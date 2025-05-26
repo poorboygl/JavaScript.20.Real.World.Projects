@@ -30,7 +30,11 @@ createList();
 
 //ToDo 5. Hàm tạo danh sách
 function createList() {
-    [...richestPeople].forEach((person, index) => {
+    [...richestPeople]
+    .map(a => ({ value: a, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(a => a.value)
+    .forEach((person, index) => {
             const listItem = document.createElement('li');
             listItem.setAttribute('data-index', index);
 
@@ -53,6 +57,13 @@ function createList() {
 /*
 
 ? richestPeople được sao chép bằng toán tử [...] để tránh ảnh hưởng đến mảng gốc.
+
+? .map() là một phương thức của mảng (array method) trong JavaScript, dùng để tạo ra một mảng mới bằng cách áp dụng một hàm cho mỗi phần tử của mảng gốc.
+
+! .map(a => ({ value: a, sort: Math.random() })) tạo ra một mảng mới gồm các đối tượng với hai thuộc tính: value (giá trị gốc) và sort (số ngẫu nhiên để sắp xếp).
+
+    a => ({ value: a, sort: Math.random() }) là một hàm mũi tên (arrow function) nhận vào một tham số a và trả về một đối tượng với hai thuộc tính value và sort.
+
 ? .forEach() là một phương thức của mảng (array method) trong JavaScript, dùng để lặp qua từng phần tử trong mảng và thực hiện một hành động nào đó với mỗi phần tử.
     array.forEach((element, index, array) => {
         hành động với element
