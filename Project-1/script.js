@@ -36,6 +36,10 @@ function createList() {
     .map(a => a.value)
     .forEach((person, index) => {
             const listItem = document.createElement('li');
+
+            // gắn class 'over' để áp dụng CSS cho các phần tử trong danh sách.
+            listItem.classList.add('over');
+
             listItem.setAttribute('data-index', index);
 
             listItem.innerHTML = `
@@ -49,9 +53,10 @@ function createList() {
             listItems.push(listItem);
 
             draggable_list.appendChild(listItem);
-    })
-}
+    });
 
+   
+}
 
 
 /*
