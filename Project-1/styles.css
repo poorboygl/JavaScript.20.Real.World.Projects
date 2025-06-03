@@ -54,7 +54,7 @@ body {
 }
 
 .draggable-list li.over .draggable {
-  background-color: #eaeaea;
+  background-color: #adee17;
   border: 1px dashed var(--border-color);
 }
 

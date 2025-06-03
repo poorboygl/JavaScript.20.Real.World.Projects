@@ -37,14 +37,14 @@ function createList() {
     .forEach((person, index) => {
             const listItem = document.createElement('li');
 
-            // gắn class 'over' để áp dụng CSS cho các phần tử trong danh sách.
-            listItem.classList.add('over');
+            //gắn class 'over' để áp dụng CSS cho các phần tử trong danh sách.
+            //listItem.classList.add('over');
 
             listItem.setAttribute('data-index', index);
 
             listItem.innerHTML = `
                 <span class="number">${index + 1}</span>
-                <div class="draggable">
+                <div class="draggable" draggable = "true">
                     <p class="person-name">${person}</p>
                     <i class="fas fa-grip-lines"></i>
                 </div>
@@ -55,9 +55,64 @@ function createList() {
             draggable_list.appendChild(listItem);
     });
 
-   
+    addEventListener();
 }
 
+function dragStart() {
+    dragStartIndex = +this.closest('li').getAttribute('data-index');
+}
+
+function dragEnter() {
+     this.classList.add('over');
+}
+
+function dragLeave() {
+    this.classList.remove('over');
+}
+
+function dragOver(e) {
+    e.preventDefault();
+
+}
+
+function dragDrop() {
+    const dragEndIndex = +this.getAttribute('data-index');
+
+    swapItems(dragStartIndex, dragEndIndex);
+
+    this.classList.remove('over');
+}
+
+function swapItems(fromIndex, toIndex) {
+    const itemOne = listItems[fromIndex].querySelector('.draggable');
+    const itemTwo = listItems[toIndex].querySelector('.draggable');
+
+    listItems[fromIndex].appendChild(itemTwo);
+    listItems[toIndex].appendChild(itemOne);
+}
+
+function addEventListener() {
+
+    // ToDo 6. Thêm sự kiện cho các phần tử kéo thả
+    const draggables = document.querySelectorAll('.draggable');
+    
+    // dragListItems: đại diện cho tất cả các phần tử danh sách có thể kéo thả.
+    const dragListItems = document.querySelectorAll('.draggable-list li');
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', dragStart);
+    });
+
+    dragListItems.forEach(item => {
+        item.addEventListener('dragover', dragOver);
+        item.addEventListener('drop', dragDrop);
+        item.addEventListener('dragenter', dragEnter);
+        item.addEventListener('dragleave', dragLeave);
+    });
+
+    
+
+}
 
 /*
 
