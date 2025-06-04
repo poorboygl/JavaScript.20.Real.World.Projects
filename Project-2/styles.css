@@ -3,9 +3,59 @@ body{
 }
 
 #clockContainer {
+    position: relative;
+    margin:auto;
     background-color: red;
     height: 40vw;
     width: 40vw;
     background: url('clock.png') no-repeat center center;
-    background-size: cover;
+    
+    background-size: 100%;
+}
+
+
+
+#hour, #minute, #second {
+    position: absolute;
+    background-color: black;
+    border-radius: 10px;
+    transform: translate(-50%, -100%);
+    top: 50%;
+    left: 50%;
+}
+/*  position: absolute;  thể hiện vị trí của đồng hồ , nói lên
+    vị trí của đồng hồ là tuyệt đối, không phụ thuộc vào các phần tử khác 
+    position: fixed;  thể hiện vị trí của đồng hồ là cố định, không thay đổi khi cuộn trang
+    position: relative;  thể hiện vị trí của đồng hồ là tương đối, phụ thuộc vào các phần tử khác
+    position: static;  thể hiện vị trí của đồng hồ là tĩnh, không thay đổi khi cuộn trang
+    position: sticky;  thể hiện vị trí của đồng hồ là dính, sẽ dính vào vị trí cố định khi cuộn trang
+
+    https://www.youtube.com/watch?v=YEmdHbQBCSQ&t=11s
+
+    transform: translate(-50%, -100%); di chuyển hour, minute, second đến vị trí chính giữa của phần tử cha
+    transform-origin: bottom center;
+
+    tại sao không dùng transform: translate(-50%, -100%); thì kim không nằm ở giữa đồng hồ?
+    bởi vì nếu không dùng transform: translate(-50%, -100%); thì kim sẽ nằm ở vị trí góc trên bên trái của phần tử cha
+    tại sao lai vị trí góc trên bên trái của phần tử cha?
+    bởi vì vị trí của phần tử cha là tuyệt đối, không phụ thuộc vào các phần tử khác
+ 
+*/
+
+#hour {
+    width: 3%;
+    height: 20%;
+    opacity: 0.8;
+}
+
+#minute {
+    width: 2%;
+    height: 30%;
+    opacity: 0.8;
+}
+
+#second {
+    width: 1%;
+    height: 40%;
+    background-color: red;
 }
