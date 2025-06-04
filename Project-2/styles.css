@@ -20,6 +20,7 @@ body{
     background-color: black;
     border-radius: 10px;
     transform: translate(-50%, -100%);
+    transform-origin: bottom center;
     top: 50%;
     left: 50%;
 }
