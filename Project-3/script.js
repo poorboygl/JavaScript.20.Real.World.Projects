@@ -9,11 +9,8 @@ class Book {
 
 class UI {
    static displayBooks() {
-        const StoreBooks = [
-            { title: 'Book One', author: 'John Doe', isbn: '123456' },
-            { title: 'Book Two', author: 'Jane Doe', isbn: '654321' }
-        ];
-        const books = StoreBooks;
+        const books = Store.getBooks();
+        
         books.forEach((book) => UI.addBookToList(book));
    }
 
@@ -60,6 +57,42 @@ class UI {
     }
 }
 
+class Store {
+
+    static  books = [
+        { title: 'Book One', author: 'John Doe', isbn: '123456' },
+        { title: 'Book Two', author: 'Jane Doe', isbn: '654321' },
+        { title: 'Book Three', author: 'Jim Doe', isbn: '789012' }
+    ];
+
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [...this.books]; // Initial books array
+            localStorage.setItem('books', JSON.stringify(books));
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(isbn) {
+        const books = Store.getBooks();
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
 
 
 // Khi trang web đã tải xong toàn bộ phần HTML, thì gọi hàm UI.displayBooks() để hiển thị sách lên giao diện.
@@ -85,7 +118,9 @@ function deleteBook() {
         e.preventDefault();
 
         //Delete book
-        UI.deleteBook(e.target);  
+        UI.deleteBook(e.target); 
+        //Remove book from store
+        Store.removeBook(e.target.parentElement.previousElementSibling.textContent); 
         UI.showAlerts('Book removed', 'success');  
     });
 }
@@ -113,9 +148,13 @@ function addBook() {
 
         //Add book to UI
         UI.addBookToList(book);
+        //Add book to store
+        Store.addBook(book);
 
         //Clear fields
         UI.clearFields();
+        //Show success message
+        UI.showAlerts('Book Added', 'success');
 
     });
 }
