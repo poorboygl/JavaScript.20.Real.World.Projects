@@ -12,5 +12,37 @@
         <script src="script.js"></script>
     </head>
     <body>
+        <div class="container">
+            <div class="row">
+                <div class="col mx-auto col-md-8 mt-3 text-center">
+                    <div class="alert align-items-center" id="message">
+                        <form id="itemform">
+                            <h3 class="">To Do List</h3>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="itemInput"  value=""
+                                    placeholder="Please enter a task">
+                                <button class="btn btn-outline-primary">Add Item</button>
+                            </div>                       
+                        </form>
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item" data-type="all">
+                                <a class="nav-link active" href="#">All</a>
+                            </li>
+                            <li class="nav-item" data-type="todo">
+                                <a class="nav-link" href="#">To Do</a>
+                            </li>
+                            <li class="nav-item" data-type="done">
+                                <a class="nav-link" href="#">Completed</a>
+                            </li>
+                        </ul>
+
+                        <ul class="list-group list-group-flush" id="itemsList">
+                            <!-- Use javascript to diplay list items here-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
