@@ -35,6 +35,14 @@ class UI {
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
    }
+
+   static deleteBook(item) {
+        if (item.classList.contains('delete')) {
+            item.parentElement.parentElement.remove();
+        }
+   }
+
+
 }
 
 
@@ -46,8 +54,27 @@ class UI {
 document.addEventListener('DOMContentLoaded', () => {
 
     //Event: display books
-    UI.displayBooks()
+    UI.displayBooks();
 
+    //Event: add and delete books
+    addBook(); 
+    deleteBook();
+  
+});
+
+function deleteBook() {
+    //Event: delete a book
+    document.querySelector('#book-list').addEventListener('click', (e) => {       
+        //Prevent default action
+        //Prevent the link from redirecting
+        e.preventDefault();
+
+        //Delete book
+        UI.deleteBook(e.target);   
+    });
+}
+
+function addBook() {
     //Event: add a book
     document.querySelector('#book-form').addEventListener('submit', (e) => {
         //Prevent default action
@@ -61,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Validate
         if (title === '' || author === '' || isbn === '') {
-            alert('Vui lòng điền đầy đủ thông tin!');
+        
             return;
         }
 
@@ -75,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UI.clearFields();
 
     });
+}
 
-});
 
 
 
