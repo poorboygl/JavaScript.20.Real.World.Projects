@@ -29,11 +29,55 @@ class UI {
 
         list.appendChild(row);
    }
+
+   static clearFields() {
+        document.querySelector('#title').value = '';
+        document.querySelector('#author').value = '';
+        document.querySelector('#isbn').value = '';
+   }
 }
 
 
-//Event: display books
-document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// Khi trang web đã tải xong toàn bộ phần HTML, thì gọi hàm UI.displayBooks() để hiển thị sách lên giao diện.
+// add script.js file to the end of body tag in index.html
+//document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    //Event: display books
+    UI.displayBooks()
+
+    //Event: add a book
+    document.querySelector('#book-form').addEventListener('submit', (e) => {
+        //Prevent default action
+        //Prevent the form from submitting and refreshing the page
+        e.preventDefault();
+
+        //Get form values
+        const title = document.querySelector('#title').value;
+        const author = document.querySelector('#author').value;
+        const isbn = document.querySelector('#isbn').value;
+
+        //Validate
+        if (title === '' || author === '' || isbn === '') {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        //Instantiate book
+        const book = new Book(title, author, isbn);
+
+        //Add book to UI
+        UI.addBookToList(book);
+
+        //Clear fields
+        UI.clearFields();
+
+    });
+
+});
+
 
 
 
