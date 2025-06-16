@@ -3,10 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hello World</title>
+        <title>Dictionary App</title>
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
     </head>
-    <body>      
+    <body> 
+        <div class="container">
+            <h1>Dictionary App</h1>
+            <input 
+            onkeypress = "handle(event)"
+            type="text" 
+            class="search-field" 
+            placeholder="Type and press enter">
+            <button id="searchButton">Search</button>
+            <div id="result"></div>
+        </div>     
     </body>
 </html>
