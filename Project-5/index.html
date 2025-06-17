@@ -8,17 +8,20 @@
         <script src="script.js" defer></script>
     </head>
     <body> 
-        <div class="container">
-            <h1 class="h1">Dictionary App</h1>
-            <div class="input">
+        <nav class="navbar">
+            <div class="nav-left">
+                <h1 class="logo">Dictionary App</h1>
+            </div>
+            <div class="nav-center">
                 <input 
-                    onkeypress = "handle(event)"
-                    type="text" 
-                    class="search-field" 
-                    placeholder="Type and press enter">
+                 onkeypress = "handle(event)"
+                id="search-input"
+                type="text"
+                class="search-field"
+                placeholder="Search a word...">
             </div>
-            <div class="results">
-            </div>
-        </div>     
+        </nav>
+        <div class="word-definition">
+        </div>   
     </body>
 </html>
